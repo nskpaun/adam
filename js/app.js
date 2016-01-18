@@ -8,7 +8,7 @@
  */
 
 // Load the ServiceWorker, the Cache polyfill, the manifest.json file and the .htaccess file
-import 'file?name=[name].[ext]!../serviceworker.js';
+// import 'file?name=[name].[ext]!../serviceworker.js';
 import 'file?name=[name].[ext]!../manifest.json';
 import 'file?name=[name].[ext]!../.htaccess';
 
@@ -44,7 +44,7 @@ openSansObserver.check().then(() => {
 });
 
 // Import the pages
-import HomePage from './components/pages/HomePage.react';
+import AdamHome from './components/pages/AdamHome.react';
 import ReadmePage from './components/pages/ReadmePage.react';
 import NotFoundPage from './components/pages/NotFound.react';
 import App from './components/App.react';
@@ -72,9 +72,9 @@ ReactDOM.render(
   <Provider store={store}>
     <Router history={createHistory()}>
       <Route component={App}>
-        <Route path="/" component={HomePage} />
+        <Route path="/" component={AdamHome} />
         <Route path="/readme" component={ReadmePage} />
-        <Route path="*" component={NotFoundPage} />
+        <Route path="*" component={AdamHome} />
       </Route>
     </Router>
   </Provider>,
