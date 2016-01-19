@@ -8,18 +8,25 @@
 
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import Logo from '../../img/logo.png';
+import Logo from '../../img/logo1.png';
 
 class App extends Component {
   render() {
     return (
-      <div className="wrapper">
-        <img className="logo" src={Logo} />
+      <div style={StyleSheet.appContainer}>
         { this.props.children }
       </div>
     );
   }
 }
+
+var StyleSheet = {
+  appContainer: {
+    color: 'black',
+    backgroundColor: 'black',
+    height: 1000
+  }
+};
 
 // REDUX STUFF
 

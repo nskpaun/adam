@@ -3,41 +3,30 @@
  * This is the first thing users see of our App
  */
 
+import Eyes from './Eyes.react';
+import Speech from 'react-speech'
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { Link } from 'react-router';
 
-class AdamHome extends Component {
+var AdamHome = React.createClass({
 
-  // _readCommand(command) {
-  //   this._commmand = command;
-  // }
-
-  handleSubmit() {
-    console.log("NATE " + this.state.command);
-  }
-
-  render() {
+  render:function() {
     return (
-      <div>
-        <h1>Hi I'm Adam</h1>
-        <form onSubmit={this.handleSubmit}>
-          <label>Talk to Me:
-            <input
-              type="text"
-              value={this.state.command}
-            />
-          </label>
-          <Link className="btn" to="/readme">Setup</Link>
-        </form>
+      <div style={StyleSheet.textStyle}>
+        <Eyes/>
+        <Speech text="I have the default settings" />
       </div>
     );
-  }
-}
+  },
+});
 
 var StyleSheet = {
-
-}
+  textStyle: {
+    padding: 200,
+    color: 'white',
+  },
+};
 
 // REDUX STUFF
 
