@@ -46,6 +46,7 @@
     "postcss-loader": "^0.8.0",
     "postcss-reporter": "^1.2.1",
     "postcss-simple-vars": "^1.0.0",
+    "react-soundplayer": "^0.3.1",
     "react-speech": "^0.3.1",
     "react-timer-mixin": "^0.13.3",
     "react-transform-hmr": "^1.0.1",
