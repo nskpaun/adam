@@ -14,6 +14,8 @@ import { Link } from 'react-router';
 
 const ALARM_URL = 'https://soundcloud.com/linkin_park/burn-it-down';
 const WHITE_NOISE_URL = 'https://soundcloud.com/tauqeer-ahmad-waheedi/relaxing-rain-and-thunder';
+const SHORT_SAMPLE = 'https://soundcloud.com/rafael-marc-alfonso-franco/together-again-sample-by-janet';
+
 const MILLIS_PER_HOUR = 1000*60*60;
 
 var AdamHome = React.createClass({

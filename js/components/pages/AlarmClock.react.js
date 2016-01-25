@@ -69,7 +69,8 @@ var AlarmClock = React.createClass({
         <SoundPlayerContainer resolveUrl={url} clientId={clientId}>
           <CustomPlayer
             ref={ref => this._playerRef = ref}
-            onFinishLoading={this.handleFinishLoading}/>
+            onFinishLoading={this.handleFinishLoading}
+            shouldStop={this.state.soundAlarm}/>
         </SoundPlayerContainer>
       </div>
     );
@@ -113,7 +114,7 @@ var CustomPlayer = React.createClass({
             return <div>Loading...</div>;
         }
 
-        if (!this._loaded) {
+        if (!this.props.shouldStop || !this._loaded) {
           this.props.onFinishLoading();
           this._loaded = true;
         }
