@@ -6,6 +6,7 @@ var Recognizer = {
       this.recognition.onresult = this.onResult;
       this.recognition.continuous = true;
       this.recognition.start();
+      this.recognition.onend = this.onRecognitionEnd;
     }
   },
 

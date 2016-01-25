@@ -34,6 +34,23 @@ var AlarmClock = React.createClass({
     this._playerRef && this._playerRef.forcePlay();
   },
 
+  renderSnooze: function() {
+    if (this.state.soundAlarm) {
+      return (
+        <button
+          onClick={this.handleSnooze}>
+          {'Submit'}
+        </button>
+      );
+    }
+    return null;
+  },
+
+  handleSnooze: function() {
+    this.props.onSnooze && this.props.onSnooze();
+    this._playerRef && this._playerRef.pause();
+  },
+
   render: function() {
     this.didRing = false;
     this.setTimeout(
@@ -48,6 +65,7 @@ var AlarmClock = React.createClass({
     return (
       <div style={StyleSheet.alarmText}>
         {'Alarm set in ' + this.props.alarmOffset + 'millis'}
+        {this.renderSnooze()}
         <SoundPlayerContainer resolveUrl={url} clientId={clientId}>
           <CustomPlayer
             ref={ref => this._playerRef = ref}
@@ -68,6 +86,21 @@ var CustomPlayer = React.createClass({
         }
     },
 
+    componentDidUpdate: function(props, state) {
+      if (this.props.track !== props.track) {
+        this._loaded = false;
+      }
+    },
+
+    pause: function() {
+      let { soundCloudAudio, playing } = this.props;
+      soundCloudAudio.pause();
+    },
+
+    componentWillUnmount: function() {
+      this.pause()
+    },
+
     forcePlay: function() {
       let { soundCloudAudio, playing } = this.props;
       soundCloudAudio.play();
@@ -80,7 +113,10 @@ var CustomPlayer = React.createClass({
             return <div>Loading...</div>;
         }
 
-        this.props.onFinishLoading();
+        if (!this._loaded) {
+          this.props.onFinishLoading();
+          this._loaded = true;
+        }
 
         return (
             <div>

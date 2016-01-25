@@ -28,7 +28,7 @@ var AdamHome = React.createClass({
   },
 
   sendTranscript: function(transcript) {
-    var result = Interpreter.interpret(transcript);
+    var result = Interpreter.interpret(transcript, this.state);
     this.setState({...result});
   },
 
@@ -65,14 +65,28 @@ var AdamHome = React.createClass({
       return <AlarmClock
         noiseUrl={WHITE_NOISE_URL}
         streamUrl={ALARM_URL}
-        alarmOffset={alarmOffset}/>
+        alarmOffset={alarmOffset}
+        onSnooze={this.handleSnooze}/>
     }
     return null;
+  },
+
+  onRecognitionEnd: function() {
+    this._recognitionEnded = true;
+  },
+
+  handleSnooze: function() {
+    this.setState({echoWords: Interpreter.QUESTIONS.SNOOZE, command: undefined});
   },
 
   render:function() {
     if (!this.state) {
       this.state = {...this.getInitialState()};
+    }
+
+    if (this._recognitionEnded === true) {
+      this._recognitionEnded = false;
+      this.recognition.start();
     }
 
     return (
